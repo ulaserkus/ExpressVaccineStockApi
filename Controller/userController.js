@@ -10,7 +10,7 @@ var userLogin = (req, res) => {
     if (req.body.username != null && req.body.password != null) {
 
         dboperations.findUser(username, password).then(result => {
-            if (result) {
+            if (result[0][0]) {
 
                 let accessToken
 
@@ -43,18 +43,17 @@ var userLogin = (req, res) => {
 
                 res.json({ accessToken })
 
-
+               
+            } 
+            else{
+                res.sendStatus(401)
             }
-            else {
-                res.sendStatus(403)
-
-            }
-
+            
+         
+            
         })
-    }
-    else {
 
-        res.sendStatus(401)
+       
     }
 
 }

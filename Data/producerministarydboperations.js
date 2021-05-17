@@ -7,7 +7,7 @@ async function getProducersByMinistaryId(id) {
         let patients = await pool.request()
             
             .input("id", sql.Int,id)
-            .query('select pt.Id,pt.Producer_Name,pt.Producer_Country,pt.Producer_Email,pt.Producer_Phone,pt.Producer_Adress from  Producer_Table as pt join Producer_Ministary as pm on pt.Id=pm.Producer_Id where pm.Ministary_Id=@id')
+            .query('select pt.Id,pt.Producer_Name,pt.Producer_Country,pt.Producer_Email,pt.Producer_Phone,pt.Producer_Adress,pt.Image_Url from  Producer_Table as pt join Producer_Ministary as pm on pt.Id=pm.Producer_Id where pm.Ministary_Id=@id')
 
         return patients.recordsets
 

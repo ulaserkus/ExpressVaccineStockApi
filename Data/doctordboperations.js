@@ -39,7 +39,7 @@ async function getDoctorsByMinistaryId(id) {
         let pool = await sql.connect(config)
         let doctors = await pool.request()
             .input("id", sql.Int, id)
-            .query('select Doctors_Table.Id,Doctor_FullName,Doctor_Phone,Doctor_Adress,Doctors_Table.Unit_Id,Doctors_Table.Image_Url from Doctors_Table join Health_Units on Health_Units.Id=Doctors_Table.Unit_Id where Health_Units.Ministary_Id=@id')
+            .query('select Doctors_Table.Id,Doctor_FullName,Doctor_Phone,Doctor_Adress,Doctors_Table.Unit_Id,Doctors_Table.Image_Url,Health_Units.Unit_Name from Doctors_Table join Health_Units on Health_Units.Id=Doctors_Table.Unit_Id where Health_Units.Ministary_Id=@id')
         return doctors.recordsets
 
     } catch (err) {
